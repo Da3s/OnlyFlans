@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 mb-5"> 
+    <h1>Lista de productos disponibles</h1>
+    <form action="{% url 'index' %}" method="get" class="form-inline mt-2 mt-md-0 mb-4">
+        <input class="form-control mr-sm-2" type="text" name="search_query" placeholder="Buscar Flanes" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    </form>
+    
+    <div class="row">
+        {% for flan in flanes %}
+        <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="{{ flan.image_url }}" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" alt="{{ flan.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ flan.name }}</h5>
+                    <p class="card-text">{{ flan.description }}</p>
+                    <p class="card-text"><small class="text-muted">Fecha de creación: {{ flan.creation_date }}</small></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
